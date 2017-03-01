@@ -7,9 +7,13 @@
 }
 
 
-.quiz-description {
+.quiz-container {
 	width: 700px;
 	height: 150px;
 	border: solid black 1px;
-	
+
+}
+
+#button {
+	float: right;
 }
