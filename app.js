@@ -35,7 +35,7 @@ var questions = [{
 	correct: 1,
 	feedback: 'Correct answer is King Slayer'
 }, {
-	question: 'What is The Hound’s real name?',
+	question: 'What is The Hounds real name?',
 	answer: ['Sandor Clegane', 'Gregor Clegane', 'Bronn Clegane', 'Jorah Clegane'],
 	correct: 0,
 	feedback: 'Correct answer is Sandor Clegane'
@@ -55,7 +55,7 @@ $('.next').click(function(event){
 	alert('Please make a selection');
 	}
 	else {
-	if (checked === questions[questionCounter].correct) {
+	if (checked == questions[questionCounter].correct) {
 		alert("Correct Answer!");
 		score++
 	}
@@ -71,6 +71,7 @@ $('.start').click(function(event){
 	displayNext();
 	$('.next').removeClass('hidden')
 	$('.start').addClass('hidden')
+
 }) 
 
 $('.start-over').click(function(event){
@@ -98,10 +99,10 @@ function createQuestionElement(index) {
 	var radioButtons = createRadios(index);
 	qElement.append(radioButtons);
 
-	var currentScore = $('<p>').append((index + 1) + " out of " + questions.length);
+	var currentScore = $('<p class="current-question">').addClass('current-question').append('Question ' + (index + 1) + " out of " + questions.length + '</p>');
 	qElement.append(currentScore);
 
-	var currentProgress = $('<p>').append(score + " correct out of " + questions.length);
+	var currentProgress = $('<p class="current-score">').addClass('current-score').append(score + " correct out of " + questions.length + '<p>');
 	qElement.append(currentProgress);
 
 	
@@ -155,13 +156,13 @@ function displayScore(){
 
 	var numCorrect = 0;
 	for (var i=0; i<selections.length; i++) {
-		if (selection[i] === questions[i].correct) {
+		if (selection[i] == questions[i].correct) {
 			numCorrect++;
 		}
 	}
 
-	score.append('You got ' + numCorrect + ' questions out of ' + questions.length + ' right!');
+	score.append('<p class="score">You got ' + numCorrect + ' questions out of ' + questions.length + ' right!</p>');
 	return score;
-}
+};
 (function(){
 })();
