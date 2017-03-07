@@ -3,9 +3,10 @@ var questions = [{
 	question: 'Which of the following is the name of Arya Starks pet dire wolf?',
 	answer: ['Summer', 'Nymeria', 'Ghost', 'Winter'],
 	correct: 1,
-	feedback: 'Correct answer is Nymeria'
+	feedback: 'Correct answer is Nymeria',
+	image: 'url(https://upload.wikimedia.org/wikipedia/en/d/d8/Game_of_Thrones_title_card.jpg)'
 }, {
-	queston: 'Which family has the Stag crest?',
+	question: 'Which family has the Stag crest?',
 	answer: ['Baratheon', 'Stark', 'Lannister', 'Tyrell'],
 	correct: 0,
 	feedback: 'Correct answer is Baratheon'
@@ -41,11 +42,17 @@ var questions = [{
 	feedback: 'Correct answer is Sandor Clegane'
  }];
 
+ // var image = [{
+ // 	image: url(http://epicfantasybooks.com/blog/wp-content/uploads/2013/12/aa.png)
+
+ // }]
+
 var questionCounter = 0; //tracks questions number//
 var selections = []; //array containing user choices//
 var quiz = $('#quiz'); //quiz div object//
 var score = 0;
-// var currentScore = 0;
+
+
 //display initial question//
 
 $('.next').click(function(event){
@@ -71,6 +78,7 @@ $('.start').click(function(event){
 	displayNext();
 	$('.next').removeClass('hidden')
 	$('.start').addClass('hidden')
+	$('.quiz-container').removeClass('hidden')
 
 }) 
 
@@ -99,10 +107,12 @@ function createQuestionElement(index) {
 	var radioButtons = createRadios(index);
 	qElement.append(radioButtons);
 
-	var currentScore = $('<p class="current-question">').addClass('current-question').append('Question ' + (index + 1) + " out of " + questions.length + '</p>');
+	var currentScore = $('<p class="current-question">').addClass('current-question').append('Question ' 
+		+ (index + 1) + " out of " + questions.length + '</p>');
 	qElement.append(currentScore);
 
-	var currentProgress = $('<p class="current-score">').addClass('current-score').append(score + " correct out of " + questions.length + '<p>');
+	var currentProgress = $('<p class="current-score">').addClass('current-score').append(score 
+		+ " correct out of " + questions.length + '<p>');
 	qElement.append(currentProgress);
 
 	
@@ -147,22 +157,18 @@ function choose(){
 			$('.start-over').removeClass('hidden')
 		}
 	})
-}			
+}	
+
+	
 
 
 //conputes score and retruns a paragraph element to be displayed//
 function displayScore(){
-	var score = $('<p>',{id: 'question'});
+	var finalScore = $('<p>',{id: 'question'});
 
-	var numCorrect = 0;
-	for (var i=0; i<selections.length; i++) {
-		if (selection[i] == questions[i].correct) {
-			numCorrect++;
-		}
-	}
 
-	score.append('<p class="score">You got ' + numCorrect + ' questions out of ' + questions.length + ' right!</p>');
-	return score;
-};
+	finalScore.append('<p class="score">You got ' + score + ' questions out of ' + questions.length + ' right!</p>');
+	return finalScore;
+}
 (function(){
 })();
